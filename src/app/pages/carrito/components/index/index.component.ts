@@ -100,7 +100,7 @@ export class IndexComponent implements OnInit {
 
       response.toPromise()
           .then((response) => {
-            console.log(response);
+            // console.log(response);
           })
           .catch((err) => {
             console.log(err);

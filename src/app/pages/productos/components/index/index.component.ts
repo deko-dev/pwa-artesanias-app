@@ -49,7 +49,6 @@ export class IndexComponent implements OnInit {
           }else {
             this.productosTotal = response;
           }
-          console.log(response);
         })
         .catch((err) => {
           console.log(err);
@@ -77,7 +76,6 @@ export class IndexComponent implements OnInit {
   
   // Método que agregar un producto al carrito de compras
   aggCarrito(producto: ProductoModel){
-    console.log(producto);
     // Obtenemos el idUser
     let idUser = localStorage.getItem('token');
 

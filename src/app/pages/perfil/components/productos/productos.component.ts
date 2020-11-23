@@ -66,7 +66,6 @@ export class ProductosComponent implements OnInit {
           this.productosUsuario = response;
           // Desactivamos el loading
           this.cargando = false;
-          console.log(response);
         })
         .catch((err) => {
           console.log(err);
@@ -94,8 +93,6 @@ export class ProductosComponent implements OnInit {
     if(productoDatosTemp.nameImage == undefined){
       productoDatosTemp.nameImage = "";
     }
-
-    console.log(this.formProducto.controls._id.value);
 
     // Evaluamos si el producto es nuevo o editado
     if(this.formProducto.controls._id.value === "" || this.formProducto.controls._id.value === null){

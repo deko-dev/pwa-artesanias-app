@@ -46,7 +46,7 @@ export class PerfilEditComponent implements OnInit {
     if( !this.formEditUsuario.controls.password.touched){
       delete usuarioEditado['password'];
     }
-    console.log(usuarioEditado);
+
     // Iniciamos el Loadin
     this.cargando = true;
     // Cargamos el Id del Usuario desde LocalStorage
@@ -62,7 +62,6 @@ export class PerfilEditComponent implements OnInit {
           this.cargando = false
           // Redirigimos al perfil
           this.actualizarDatosVisuales(true);
-          console.log(res)
         })
         .catch((err) => {
           // Apagamos el loading
