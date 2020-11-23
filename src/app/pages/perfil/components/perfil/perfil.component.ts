@@ -20,6 +20,11 @@ export class PerfilComponent implements OnInit {
   // Variable que guardara la data
   data: Observable<Object>;
 
+  // Varibale que activa/desactiva la alert
+  activarAlert: Boolean = false;
+  // Variable que actualiza el texto del alert
+  textAlert: String;
+
   constructor(
     private _usuariosService: UsuariosService
   ) { 
@@ -63,6 +68,8 @@ export class PerfilComponent implements OnInit {
   };
 
   actualizarVisual(editado: Boolean){
+    this.activarAlert = true;
+    this.textAlert = "Usuario Editado!! 💪"
     this.cargando = true;
     this.editando = false;
 

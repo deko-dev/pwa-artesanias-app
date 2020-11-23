@@ -1,3 +1,4 @@
+<app-alert-flotante *ngIf="activarAlert" [textoAlertFlotante]="textAlert" (click)="activarAlert = !activarAlert"></app-alert-flotante>
 <div class="opt-perfil" *ngIf="data | async">
     <h2 class="titulo-opt-perfil">Mi Perfil</h2>
     <button class="button btn-edit-perfil" (click)="editando = !editando">
@@ -18,7 +19,6 @@
     <div class="box-datos-login-opt">
         <h3 class="datos-login-opt">Datos de Login</h3>
         <h4>Email: <span class="email-opt"> {{ usuarioActivo.email }}</span></h4>
-        <h4>Password: <span class="direccion-opt"> {{ usuarioActivo.password }}</span></h4>
     </div>
 </div>
 <app-cargando class="centrar-cargando" *ngIf="cargando"></app-cargando>

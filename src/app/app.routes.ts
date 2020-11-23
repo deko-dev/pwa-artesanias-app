@@ -36,7 +36,7 @@ const routes: Routes = [
             .then(m => m.ProductosModule) 
     },
     { 
-        path: 'cart', 
+        path: 'carrito', 
         loadChildren: () => import('./pages/carrito/carrito.module')
             .then(m => m.CarritoModule) 
     }

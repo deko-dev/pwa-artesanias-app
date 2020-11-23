@@ -1,0 +1,13 @@
+<app-alert-flotante *ngIf="activarAlert" (click)="activarAlert = !activarAlert" [textoAlertFlotante]="textAlert"></app-alert-flotante>
+<div class="section-carrito">
+    <app-cargando class="centrar-cargando" *ngIf="cargando"></app-cargando>
+    <div class="box-prod-car" *ngIf="!cargando">
+        <app-producto-car *ngFor="let producto of productosInCar, let i = index" [producto]="producto" [posProducto]="i"></app-producto-car>
+        <div class="box-btn-enviar">
+            <button class="button btn-enviar-pedido" (click)="hacerPedido()">
+                <i class="fas fa-cash-register"></i>
+                Hacer Pedido
+            </button>
+        </div>
+    </div>
+</div>

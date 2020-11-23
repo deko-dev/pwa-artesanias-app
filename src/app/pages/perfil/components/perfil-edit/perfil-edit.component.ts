@@ -38,8 +38,15 @@ export class PerfilEditComponent implements OnInit {
   async editarUsuario(){
 
     // Extraemos los datos del Usuario Editado
-    const usuarioEditado = this.formEditUsuario.value;
-        usuarioEditado.rol = 1;
+    let usuarioEditado: Object;
+    usuarioEditado = this.formEditUsuario.value;
+    usuarioEditado['rol'] = 1;
+
+    // Evaluamos si el usuario actualizó su password
+    if( !this.formEditUsuario.controls.password.touched){
+      delete usuarioEditado['password'];
+    }
+    console.log(usuarioEditado);
     // Iniciamos el Loadin
     this.cargando = true;
     // Cargamos el Id del Usuario desde LocalStorage
@@ -70,7 +77,7 @@ export class PerfilEditComponent implements OnInit {
   crearFormulario(){
     // Creamos el formulario 
     this.formEditUsuario = this.formBuilder.group({
-      rol: [''],
+      _id: [''],
       tipoId: [''],
       nid: [''],
       nombres: [''],
@@ -86,7 +93,7 @@ export class PerfilEditComponent implements OnInit {
 
   cargarData(dataUsuario: UsuarioModel){
     this.formEditUsuario = this.formBuilder.group({
-      rol: [dataUsuario.rol],
+      _id: [localStorage.getItem('token')],
       tipoId: [dataUsuario.tipoId],
       nid: [dataUsuario.nid],
       nombres: [dataUsuario.nombres],

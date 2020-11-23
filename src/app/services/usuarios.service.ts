@@ -23,7 +23,7 @@ export class UsuariosService {
   // Método para editar un usuario
   editarUsuario(idUsuario: String, dataUsuario){
     // Creamos la URL concatenando el id del Usuario
-    const url = `http://localhost:3000/api/editUsuario/${idUsuario}`;
+    const url = `${this.API_URL}editUsuario/${idUsuario}`;
     // Rentornamos los resultado de la petición http
     return this.http.put(url, dataUsuario);
   }

@@ -1,0 +1,20 @@
+<div class="card-pro-car">
+    <div class="img-pro-car">
+        <img [src]="'https://artesanias-hbs.herokuapp.com/images/app/no-image.webp'" alt="" *ngIf="producto.producto.nameImage === ''">
+        <img [src]="rutearImagen(producto.producto.nameImage)" alt="" *ngIf="producto.producto.nameImage != ''">
+    </div>
+    <div class="nombre-pro-car">
+        <h3>{{ producto.producto.nombre }}</h3>
+    </div>
+    <div class="cant-pro-car">
+        <h3>{{ producto.cant }} <span>Unds</span> * {{ producto.producto.precio | currency: 0: "$"}}</h3>
+    </div>
+    <div class="total-pro-car">
+        <h3>{{ producto.producto.precio * producto.cant | currency: 0: "$" }}</h3>
+    </div>
+    <div class="action-pro-car">
+        <button class="button" (click)="borrarProductoCarrito(posProducto)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>

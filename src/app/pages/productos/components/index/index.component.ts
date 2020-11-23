@@ -19,6 +19,10 @@ export class IndexComponent implements OnInit {
   data: Observable<Object>;
   // Variable que activa y desactiva el Loading
   cargando: Boolean = false;
+  // Variable que activa y desactiva el Alert
+  activarAlert: Boolean = false;
+  // Variable que actualiza el texto del alert
+  textAlert: String;
 
   constructor(
     private _productosService: ProductosService
@@ -71,4 +75,64 @@ export class IndexComponent implements OnInit {
     return this.productosTotal;
   }
   
+  // Método que agregar un producto al carrito de compras
+  aggCarrito(producto: ProductoModel){
+    console.log(producto);
+    // Obtenemos el idUser
+    let idUser = localStorage.getItem('token');
+
+    // Verificamos si existe un carrito para este usuario
+    let carrito = {
+      productos: [],
+      total: 0
+    };
+
+    if(localStorage.getItem(idUser)){
+      let encontrado = false;
+        carrito = JSON.parse(localStorage.getItem(idUser));
+        let totalCar = {total: 0};
+        carrito.productos.forEach((productoEnCar) => {
+          if(productoEnCar.producto._id === producto._id){
+            productoEnCar.cant += 1;
+            carrito.total += productoEnCar.producto.precio
+            encontrado = true;
+          }
+        })
+
+
+        if(!encontrado){
+          carrito.total += Number.parseInt(producto.precio);
+          let proCantidad = {cant: 1, producto};
+          carrito.productos.push(proCantidad);
+        } 
+
+        this.actualizarCarrito(carrito, idUser);
+        this.activarAlert = true;
+        this.textAlert = "Producto en carrito!! 🛒"
+        setTimeout(()=> {
+          this.activarAlert = false;
+        }, 3000)
+    } else {
+        let proCantidad = {cant: 1, producto};
+        carrito.total = Number.parseInt(producto.precio);
+        carrito.productos.push(proCantidad);
+        
+        this.actualizarCarrito(carrito, idUser);
+    }
+    
+    // $('.cantidad-carrito').text(carrito.length);
+    
+    // $('.box-carrito').addClass('new-producto');
+    // setTimeout(() => {
+    //     $('.box-carrito').removeClass('new-producto');
+    // }, 3000)
+  }
+
+  // Método que actualiza el carrito
+  actualizarCarrito(carrito = {}, idUser){
+    const json = JSON.stringify(carrito);
+    localStorage.setItem(idUser, json);
+    
+}
+
 }

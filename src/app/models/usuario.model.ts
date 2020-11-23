@@ -1,4 +1,5 @@
 export interface UsuarioModel {
+    _id?: string,
     rol: {
         type: String,
         required: true

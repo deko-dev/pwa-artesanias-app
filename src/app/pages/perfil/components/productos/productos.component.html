@@ -1,4 +1,5 @@
 <app-cargando class="centrar-cargando" *ngIf="cargando"></app-cargando>
+<app-alert-flotante *ngIf="activarAlert" [textoAlertFlotante]="textAlert" (click)="activarAlert = !activarAlert"></app-alert-flotante>
 <div class="opt-productos" *ngIf="!cargando">
     <h3 class="titulo-opt-productos">Mis Productos</h3>
     <button class="button btn-agg-pro" (click)="formularioActive = true">

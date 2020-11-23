@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class RegistroService {
 
-  private API_URL = "http://localhost:3000/auth/register"
+  private API_URL = "https://artesanias-hbs.herokuapp.com/auth/register"
 
   constructor(
     private http: HttpClient

@@ -1,3 +1,4 @@
+<app-alert-flotante *ngIf="activarAlert" [textoAlertFlotante]="textAlert" (click)="activarAlert = !activarAlert"></app-alert-flotante>
 <div class="box-productos">
     <app-cargando class="centrar-cargando" *ngIf="cargando"></app-cargando>
     <div class="box-cards-productos" *ngIf="!cargando && data | async">
@@ -13,7 +14,7 @@
                     <p class="descripcion-producto">{{ producto.descripcion }}</p>
                 </div>
                 <div class="box-options-productos">
-                    <button class="button btn-agg-carro">
+                    <button class="button btn-agg-carro" (click)="aggCarrito(producto)">
                         <i class="fas fa-cart-plus"></i>
                     </button>
                 </div>

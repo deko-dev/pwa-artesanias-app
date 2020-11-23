@@ -31,6 +31,11 @@ export class ProductosComponent implements OnInit {
   // Variable que guarda la imagen del Producto
   imagenProducto: File;
 
+  // Variable que activa el flotante
+  activarAlert: Boolean = false
+  // Variable que muestra la informacion en el flotante
+  textAlert: String;
+
   
   constructor(
     private _productosService: ProductosService,
@@ -90,8 +95,10 @@ export class ProductosComponent implements OnInit {
       productoDatosTemp.nameImage = "";
     }
 
+    console.log(this.formProducto.controls._id.value);
+
     // Evaluamos si el producto es nuevo o editado
-    if(this.formProducto.controls._id.value === ""){
+    if(this.formProducto.controls._id.value === "" || this.formProducto.controls._id.value === null){
       this.crearProducto( this.crearFormData(productoDatosTemp) );
     } else {
       this.editarProducto(productoDatosTemp._id, this.crearFormData(productoDatosTemp) );
@@ -129,6 +136,10 @@ export class ProductosComponent implements OnInit {
           this.formularioActive = false;
            // Desactivamos el cargando
            this.cargandoPeticion = false;
+          //  Activamos el alert
+          this.activarAlert = true;
+          // Mostramos texto en el alert
+          this.textAlert = "Producto Editado!! ✔"
            // Actualizamos la lista de productos
            this.getProductosUsuario();
          })
