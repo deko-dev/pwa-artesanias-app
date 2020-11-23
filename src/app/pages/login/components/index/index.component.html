@@ -1,0 +1,17 @@
+<div class="box-login">
+    <div class="box-datos-login">
+        <form (ngSubmit)="login()" class="form-login" [formGroup]="formLogin">
+            <h3>Login</h3>
+            <span class="error-login">{{ error }}</span>
+            <div class="datos-form">
+                <input type="email" class="email" name="email" id="email" placeholder="example@artesanias.com" required formControlName="email">
+                <input type="password" class="pass" name="password" id="password" placeholder="**********" required formControlName="password">
+            </div>
+            <div class="login-options">
+                <app-cargando *ngIf="cargando"></app-cargando>
+                <button type="submit" class="button" *ngIf="!cargando">Login</button>
+                <a class="button" href="/registro" *ngIf="!cargando">¿No tienes Cuenta?, Registrate</a>
+            </div>
+        </form>
+    </div>
+</div>

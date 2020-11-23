@@ -1,0 +1,31 @@
+<div class="box-menu-perfil" [ngClass]="{'barra-expand': expand}">
+    <a class="toggle-menu-perfil" (click)="expand = !expand">
+        <i class="fas fa-chevron-down"></i>
+    </a>
+    <ul>
+        <li>
+            <a routerLink="/perfil">
+                <i class="fas fa-user-cog"></i>
+                <span>Perfil</span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="productos" class="perfil-productos">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Productos</span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="ventas" class="perfil-ventas">
+                <i class="fas fa-cash-register"></i>
+                <span>Ventas</span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="compras" class="perfil-compras">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Compras</span>
+            </a>
+        </li>
+    </ul>
+</div>

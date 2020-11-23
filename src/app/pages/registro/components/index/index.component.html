@@ -1,0 +1,42 @@
+<div class="box-register">
+    <div class="box-datos-register">
+        <form (ngSubmit)="registro()" class="form-register" [formGroup]="formRegistro">
+            <h3>Registro</h3>
+            <span class="error-register">{{ error }}</span>
+            <div class="datos-form">
+                <div class="datos-personales-box">
+                    <input type="text" class="rol" name="rol" id="rol" value="1" hidden formControlName="rol">
+                    <span class="datos-personales">Datos Personales</span>
+                    <div class="box-nid">
+                        <select class="tipoId" name="tipoId" id="tipoId" required formControlName="tipoId">
+                            <option value="1" selected disabled>Selecione</option>
+                            <option value="CE">Cedula Extranjera</option>
+                            <option value="CC">Cedula</option>
+                            <option value="TI">Tarjeta de Identidad</option>
+                        </select>
+                        <input type="text" class="nid" name="nid" id="nid" placeholder="#" required formControlName="nid">
+                        <span class="error-css"></span>
+                    </div>
+                    <input type="text" class="nombres" name="nombres" id="nombres" placeholder="Nombres" required formControlName="nombres">
+                    <input type="text" class="apellidos" name="apellidos" id="apellidos" placeholder="Apellidos" required formControlName="apellidos">
+                    <input type="date" class="nacimiento" name="nacimiento" id="nacimiento" placeholder="12-12-2020" required formControlName="nacimiento">
+                </div>
+
+                <div class="datos-contacto-login-box">
+                    <span class="datos-contacto">Datos de Contacto</span>
+                    <input type="tel" class="telefono" name="telefono" id="telefono" placeholder="Telefono" required formControlName="telefono">
+                    <input type="text" class="direccion" name="direccion" id="direccion" placeholder="Direccion, Barrio, Municipio, Departamento" required formControlName="direccion">
+                    <span class="datos-login">Datos de Login</span>
+                    <input type="email" class="email" name="email" id="email" placeholder="example@artesanias.com" required formControlName="email">
+                    <input type="password" class="pass" name="password" id="password" placeholder="**********" required formControlName="password">
+                    <span class="error-password"></span>
+                </div>
+            </div>
+            <div class="register-options">
+                <app-cargando *ngIf="cargando"></app-cargando>
+                <button class="button btn-register" *ngIf="!cargando">Registrar</button>
+                <a class="button" href="/login" *ngIf="!cargando">¿Ya tienes Cuenta?, Inicia Sesión</a>
+            </div>
+        </form>
+    </div>
+</div>

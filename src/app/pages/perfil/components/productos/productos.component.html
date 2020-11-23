@@ -1,0 +1,48 @@
+<app-cargando class="centrar-cargando" *ngIf="cargando"></app-cargando>
+<div class="opt-productos" *ngIf="!cargando">
+    <h3 class="titulo-opt-productos">Mis Productos</h3>
+    <button class="button btn-agg-pro" (click)="formularioActive = true">
+        <i class="fas fa-plus"></i>
+        Agregar
+    </button>
+    <div class="box-card-pro-perfil" *ngIf="data | async">
+        <div class="card-pro-perfil" *ngFor="let producto of productosUsuario">
+            <div class="box-img-pro">
+                <img [src]="'https://artesanias-hbs.herokuapp.com/images/app/no-image.webp'" alt="" *ngIf="producto.nameImage === ''">
+                <img [src]="rutearImagen(producto.nameImage)" alt="" *ngIf="producto.nameImage != ''">
+            </div>
+            <div class="box-info-pro">
+                <h3 class="nombre-pro">{{ producto.nombre }}</h3>
+                <span class="precio-pro">{{ producto.precio | currency: 0 : "$"}}</span>
+                <p class="desc-pro">{{ producto.descripcion }}</p>
+            </div>
+            <div class="box-opts-pro">
+                <button class="btn-edit-pro button" (click)="cargaProductoFormulario(producto)">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn-delete-pro button" (click)="borrarProducto(producto._id)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <app-alert *ngIf="productosUsuario.length === 0" [textoAlert]="'No hay productos que mostrar'"></app-alert>
+
+    <form *ngIf="formularioActive" class="producto-edit" [formGroup]="formProducto" (ngSubmit)="actionProducto(); formProducto.reset()">
+        <h3 class="titulo-opt">{{ titleActionForm }} <span class="skip-edit-pro" (click)="formularioActive = false"><i class="fas fa-times"></i></span></h3>
+        <div class="datos-form">
+            <input type="text" class="id-producto-form" name="id-producto-form" id="id-producto-form" placeholder="Id Producto" formControlName="_id" disabled>
+            <input type="text" class="nombre" name="nombre" id="nombre" placeholder="Nombre" formControlName="nombre">
+            <input type="text" class="descripcion" name="descripcion" id="descripcion" placeholder="Descripcion" formControlName="descripcion">
+            <input type="number" class="precio" name="precio" id="precio" placeholder="$0.0" formControlName="precio">
+            <input type="number" class="stock" name="stock" id="stock" placeholder="Stock" formControlName="stock">
+            <input type="file" class="imagen" name="imagen" id="imagen" formControlName="imagen" (change)="obtenerImagen($event)">
+            <input type="text" class="nameImage" name="nameImage" id="nameImage" formControlName="nameImage" placeholder="Nombre Imagen" disabled>
+        </div>
+        <div class="edit-pro-opts">
+            <app-cargando *ngIf="cargandoPeticion"></app-cargando>
+            <button class="button btn-action-pro" *ngIf="!cargandoPeticion">{{ btnActionForm }}</button>
+        </div>
+    </form>
+    <!-- <app-productos-edit></app-productos-edit> -->
+</div>

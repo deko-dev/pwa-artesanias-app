@@ -1,0 +1,35 @@
+<div class="header" [ngClass]="{'toggle-expand': toggle}">
+    <div class="box-logo">
+        <h2 class="logo">Artesanias.com</h2>
+    </div>
+    <a class="toggle">
+        <i class="fa fa-bars" aria-hidden="true" (click)="toggle = !toggle"></i>
+    </a>
+    <div class="nav">
+        <ul>
+            <li>
+                <a routerLink="home">Home</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a routerLink="productos">Productos</a>
+            </li>
+            <li class="login-a" *ngIf="token === null">
+                <a routerLink="login">Login</a>
+            </li>
+            <li class="perfil-a" *ngIf="token !== null">
+                <a routerLink="/perfil">
+                    <i class="fas fa-user"></i>
+                </a>
+            </li>
+            <li class="logout-a" *ngIf="token !== null">
+                <a class="logout-btn" (click)="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>

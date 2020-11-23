@@ -1,0 +1,27 @@
+<div class="opt-perfil" *ngIf="data | async">
+    <h2 class="titulo-opt-perfil">Mi Perfil</h2>
+    <button class="button btn-edit-perfil" (click)="editando = !editando">
+        <i class="fas fa-edit"></i>
+        Editar
+    </button>
+    <div class="box-datos-personales-opt">
+        <h3 class="datos-personales-opt">Datos Personales</h3>
+        <h4 class="tipoId-h4">{{ usuarioActivo.tipoId }}: <span class="nid-opt">{{ usuarioActivo.nid }}</span></h4>
+        <h4>Nombres y Apellidos: <span class="nombres-opt"> {{ usuarioActivo.nombres }} {{ usuarioActivo.apellidos }}</span></h4>
+        <h4>Nacimiento: <span class="nacimiento-opt"> {{ usuarioActivo.nacimiento }} </span></h4>
+    </div>
+    <div class="box-datos-contacto-opt">
+        <h3 class="datos-contacto-opt">Datos de Contacto</h3>
+        <h4>Telefono: <span class="tel-opt"> {{ usuarioActivo.telefono }}</span></h4>
+        <h4>Dirección: <span class="direccion-opt"> {{ usuarioActivo.direccion }}</span></h4>
+    </div>
+    <div class="box-datos-login-opt">
+        <h3 class="datos-login-opt">Datos de Login</h3>
+        <h4>Email: <span class="email-opt"> {{ usuarioActivo.email }}</span></h4>
+        <h4>Password: <span class="direccion-opt"> {{ usuarioActivo.password }}</span></h4>
+    </div>
+</div>
+<app-cargando class="centrar-cargando" *ngIf="cargando"></app-cargando>
+
+
+<app-perfil-edit *ngIf="editando" (actualizarVisual)="actualizarVisual($event)"></app-perfil-edit>

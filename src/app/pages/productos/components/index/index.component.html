@@ -1,0 +1,23 @@
+<div class="box-productos">
+    <app-cargando class="centrar-cargando" *ngIf="cargando"></app-cargando>
+    <div class="box-cards-productos" *ngIf="!cargando && data | async">
+        <div class="box-card" *ngFor="let producto of productosTotal">
+            <div class="box-img-producto">
+                <img [src]="'https://artesanias-hbs.herokuapp.com/images/app/no-image.webp'" alt="" *ngIf="producto.nameImage === ''">
+                <img [src]="rutearImagen(producto.nameImage)" alt="" *ngIf="producto.nameImage != ''">
+            </div>
+            <div class="box-info-producto">
+                <div class="box-datos-producto">
+                    <h3 class="nombre-producto">{{ producto.nombre }}</h3>
+                    <span class="precio">{{ producto.precio | currency: 0: '$' }}</span>
+                    <p class="descripcion-producto">{{ producto.descripcion }}</p>
+                </div>
+                <div class="box-options-productos">
+                    <button class="button btn-agg-carro">
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
