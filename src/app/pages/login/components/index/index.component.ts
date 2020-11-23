@@ -53,7 +53,8 @@ export class IndexComponent implements OnInit {
                 // Quitamos la animacion de carga
                 this.cargando = false;
                 // Redirigiendo a Home
-                this.router.navigateByUrl('/home');
+                // this.router.navigateByUrl('/home');
+                window.location.href = "/home"
               })
               .catch((err) => {
                 // Capturamos el error y lo mostramos por pantalla
